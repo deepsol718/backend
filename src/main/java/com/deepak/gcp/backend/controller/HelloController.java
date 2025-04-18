@@ -12,4 +12,10 @@ public class HelloController {
     public ResponseEntity<ContentDto> hi(){
         return ResponseEntity.ok(new ContentDto("Hi, Khana kb khana h?"));
     }
+
+    @GetMapping("/bye")
+    public ResponseEntity<ContentDto> bye(){
+        return ResponseEntity.ok(new ContentDto("bye bye"));
+    }
+
 }
