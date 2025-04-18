@@ -15,7 +15,7 @@ public class HelloController {
 
     @GetMapping("/bye")
     public ResponseEntity<ContentDto> bye(){
-        return ResponseEntity.ok(new ContentDto("bye bye"));
+        return ResponseEntity.ok(new ContentDto("bye bye love"));
     }
 
 }
