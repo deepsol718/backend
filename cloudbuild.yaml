@@ -1,15 +1,26 @@
 steps:
+  # Step 1: Build the JAR file using Maven
+  - name: maven:3.9-eclipse-temurin-21
+    entrypoint: mvn
+    args: ["clean", "package", "-DskipTests=true"]
+
+  # Step 2: Build Docker image from Dockerfile
   - name: gcr.io/cloud-builders/docker
     args:
       - build
       - '-t'
       - '$_AR_HOSTNAME/$PROJECT_ID/$_AR_REPO/$_SERVICE_NAME:$COMMIT_SHA'
       - .
+
+  # Step 3: Push Docker image to Artifact Registry
   - name: gcr.io/cloud-builders/docker
     args:
       - push
       - '$_AR_HOSTNAME/$PROJECT_ID/$_AR_REPO/$_SERVICE_NAME:$COMMIT_SHA'
+
+  # Step 4: Deploy the image to Cloud Run
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
     args:
       - run
       - deploy
@@ -20,9 +31,12 @@ steps:
       - $_DEPLOY_REGION
       - '--platform'
       - $_PLATFORM
-    entrypoint: gcloud
-timeout: 1200s
+      - '--allow-unauthenticated'
+
 images:
   - '$_AR_HOSTNAME/$PROJECT_ID/$_AR_REPO/$_SERVICE_NAME:$COMMIT_SHA'
+
 options:
   logging: CLOUD_LOGGING_ONLY
+timeout: 1200s
+
