@@ -2,7 +2,7 @@ name: Deploy to Cloud Run
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 env:
   PROJECT_ID: gold-gearbox-390112          # Replace with your actual GCP project ID
