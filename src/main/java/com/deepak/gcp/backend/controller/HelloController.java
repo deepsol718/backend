@@ -10,7 +10,7 @@ public class HelloController {
 
     @GetMapping("/hi")
     public ResponseEntity<ContentDto> hi(){
-        return ResponseEntity.ok(new ContentDto("Hi, Khana kb khana h?"));
+        return ResponseEntity.ok(new ContentDto("Spring boot m sambhal lunga, tu react dekh lena, please"));
     }
 
     @GetMapping("/bye")
