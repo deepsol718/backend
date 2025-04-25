@@ -9,7 +9,7 @@ env:
   REGION: us-central1                      # Change to your desired GCP region (e.g., asia-south1 for Mumbai)
   REPO: my-docker-repositoy	               # Name of your Artifact Registry Docker repo
   SERVICE: testcloudrunservice           # Name of your Cloud Run service
-
+  SPRING_PROFILE: ${{ github.ref == 'refs/heads/prod' && 'prod' || 'dev' }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -51,3 +51,4 @@ jobs:
             --platform=managed \
             --region=$REGION \
             --allow-unauthenticated
+            --set-env-vars=SPRING_PROFILES_ACTIVE=${{ env.SPRING_PROFILE }}
