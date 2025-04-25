@@ -28,7 +28,7 @@ public class HelloController {
 
     @GetMapping("/getUserById")
     public ResponseEntity<User> getUserById(@RequestParam Long id){
-        User user = userRepository.getReferenceById(id);
+        User user = userRepository.findById(id).orElse(null);
         if (user != null) {
             return ResponseEntity.ok(user);
         } else {

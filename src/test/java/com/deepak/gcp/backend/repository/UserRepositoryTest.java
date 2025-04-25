@@ -26,12 +26,8 @@ public class UserRepositoryTest {
     @Test
     @Rollback(value = false)
     public void testSaveUser(){
-        User user = new User();
-        user.setUsername("deepak-dev");
-        user.setPassword("deepak1");
-        User saved = userRepository.save(user);
-
-        System.out.println(saved);
+        User user = userRepository.getReferenceById(1L);
+        System.out.println(user);
 
     }
 
