@@ -50,5 +50,5 @@ jobs:
             --image=$REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$SERVICE:$GITHUB_SHA \
             --platform=managed \
             --region=$REGION \
-            --allow-unauthenticated
+            --allow-unauthenticated \
             --set-env-vars=SPRING_PROFILES_ACTIVE=${{ env.SPRING_PROFILE }}
