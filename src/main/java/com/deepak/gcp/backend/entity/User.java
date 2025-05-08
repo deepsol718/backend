@@ -1,5 +1,6 @@
 package com.deepak.gcp.backend.entity;
 
+import com.deepak.gcp.backend.helper.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -19,6 +20,10 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 
 }

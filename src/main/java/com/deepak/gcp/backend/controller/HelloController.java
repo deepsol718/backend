@@ -21,8 +21,6 @@ public class HelloController {
 
     @GetMapping("/hi")
     public ResponseEntity<ContentDto> hi(){
-        System.out.println("System.out.println");
-        logger.info("logger.info");
         return ResponseEntity.ok(new ContentDto("Spring boot m sambhal lunga, tu react dekh lena, please"));
     }
 
@@ -34,6 +32,11 @@ public class HelloController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/customfilter/hi")
+    public String sendHi(){
+        return "Hi";
     }
 
 
